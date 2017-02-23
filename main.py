@@ -1,3 +1,10 @@
+import search
+
+def risolvi(input):
+    output = search.greedy(input)
+    print(search.evaluate(output, input))
+    return search.transform_sol(output)
+
 def read_input(file):
 
     file = open("dataset/" + file, "r")
@@ -62,22 +69,17 @@ def write_output(file, output):
     for idx, value in enumerate(caches):
         file.write(" ".join(str(x) for x in caches[idx]) + "\n")
 
-def risolvi(input):
-    print("esegui()")
-    return " "
-
 def main():
     print("start")
 
     dataset_files = ("me_at_the_zoo", "videos_worth_spreading", "trending_today", "kittens")
 
-    inputs = list()
-    output = list()
-
     for idx, value in enumerate(dataset_files):
-        inputs.append(read_input(value+".in"))
-        output.append(risolvi(inputs[idx]))
-        write_output(value, output[idx]+".out")
+        print("start "+value)
+        input = read_input(value+".in")
+        output = risolvi(input)
+        write_output(value+".out", output)
+        print("end " + value)
 
     print("end")
 
