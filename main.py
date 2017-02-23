@@ -60,8 +60,7 @@ def write_output(file, output):
     file.write(str(N)+"\n")
 
     for idx, value in enumerate(caches):
-        file.write(caches[idx][0])
-        " ".join(caches[idx][1::])
+        file.write(" ".join(str(x) for x in caches[idx]) + "\n")
 
 def risolvi(input):
     print("esegui()")
@@ -82,4 +81,5 @@ def main():
 
     print("end")
 
-main()
+if __name__ == "__main__":
+    main()
