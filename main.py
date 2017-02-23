@@ -63,22 +63,22 @@ def write_output(file, output):
         file.write(caches[idx][0])
         " ".join(caches[idx][1::])
 
-def esegui():
+def risolvi(input):
     print("esegui()")
-
+    return " "
 
 def main():
     print("start")
 
-    dataset_files = ("me_at_the_zoo.in", "videos_worth_spreading.in", "trending_today.in", "kittens.in")
+    dataset_files = ("me_at_the_zoo", "videos_worth_spreading", "trending_today", "kittens")
 
     inputs = list()
     output = list()
 
     for idx, value in enumerate(dataset_files):
-        inputs[idx] = read_input(value)
-        output[idx] = risolvi(inputs[idx])
-        write_output(value, output[idx])
+        inputs.append(read_input(value+".in"))
+        output.append(risolvi(inputs[idx]))
+        write_output(value, output[idx]+".out")
 
     print("end")
 
