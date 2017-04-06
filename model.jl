@@ -3,6 +3,7 @@ include("utils.jl")
 
 function build_solution(x)
     x_val = getvalue(x)
+    V = size(x_val,1)
     C = size(x_val,2)
     nonempty_servers = [c for c in 1:C if sum(x_val[1:end,c]) > 0.9] 
     solution = Dict{Int, Vector{Int}}()
@@ -142,7 +143,8 @@ function solve_instance(instance_name,
     
         # The latency for a request is either the latency from the selected cache server..
         @constraint(m, η[e,v] ≥ L[e][c] * σ[e,c,v])
-        
+    end    
+    for e in 1:E, v = keys(num_req[e])
         # or the latency from the data center.
         @constraint(m, η[e,v] ≥ Ld[e] * ζ[e,v])
     end
